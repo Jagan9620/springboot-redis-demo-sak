@@ -25,27 +25,29 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
+                sh """
+                    docker build -t ${IMAGE_NAME} .
+                """
             }
         }
 
-        stage('Deploy with Docker Compose') {
+        stage('Deploy using Docker Compose') {
             steps {
-                sh '''
-                    docker-compose down || true
-                    docker-compose build --no-cache
-                    docker-compose up -d
-                '''
+                sh """
+                    docker compose down || true
+                    docker compose build --no-cache
+                    docker compose up -d
+                """
             }
         }
     }
 
     post {
         success {
-            echo "Deployment successful 🎉 Spring Boot + Redis app running!"
+            echo "🚀 Deployment successful! Spring Boot + Redis is running."
         }
         failure {
-            echo "❌ Deployment failed. Check logs."
+            echo "❌ Deployment failed. Check Jenkins logs."
         }
     }
 }
