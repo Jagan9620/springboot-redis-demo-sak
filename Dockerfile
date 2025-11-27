@@ -4,8 +4,8 @@ FROM eclipse-temurin:17-jdk-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy jar file (must match your target jar name)
-COPY target/springboot-redis-demo.jar app.jar
+# Copy correct jar file (this is what Maven built)
+COPY target/springboot-redis-demo-1.0.0.jar app.jar
 
 # Expose port
 EXPOSE 8084
