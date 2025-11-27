@@ -13,8 +13,8 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        // Must use docker-compose service name "redis"
-        return new LettuceConnectionFactory("redis", 6379);
+        // Uses values from application.properties
+        return new LettuceConnectionFactory();
     }
 
     @Bean
